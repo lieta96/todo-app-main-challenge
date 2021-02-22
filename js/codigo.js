@@ -118,44 +118,64 @@ let completed=document.getElementById("completed");
 let all=document.getElementById("all");
 let active=document.getElementById("active");
 
+let completedMobile=document.getElementById("completed-mobile");
+let allMobile=document.getElementById("all-mobile");
+let activeMobile=document.getElementById("active-mobile");
+
+let arrayButtons=[all,active,completed,clearCompleted];
+let arrayButtonsMobile=[allMobile,activeMobile,completedMobile,clearCompleted];
+
 // Cuando tocamos "completed" mostramos en pantalla solo las tareas que ya fueron realizadas
 let myUL=document.getElementById("myUL");
-// Escondemos de la lista solo los elementos que no tienen la clase "crossed-text"
-completed.addEventListener ("click", function() {
-  completed.classList.add("button-item-click");
-  all.classList.remove("button-item-click");
-  clearCompleted.classList.remove("button-item-click");
-  active.classList.remove("button-item-click");
-for (let index = 0; index < myUL.children.length; index++) {
-  if (myUL.children[index].classList.contains ("crossed-text")){
-    myUL.children[index].style.display="flex";
-  } else  myUL.children[index].style.display="none";
-  }
-});
-// Cuando tocamos "all" nos aparecen todas las tareas
+// Cuando tocamos "completed" aparecen solo las tareas realizadas
+function completedFunction (array){
+    array[2].addEventListener ("click", function() {
+        array[0].classList.remove("button-item-click");        
+        array[1].classList.remove("button-item-click");
+        array[2].classList.add("button-item-click");
+        array[3].classList.remove("button-item-click");
+      for (let index = 0; index < myUL.children.length; index++) {
+        if (myUL.children[index].classList.contains ("crossed-text")){
+          myUL.children[index].style.display="flex";
+        } else  myUL.children[index].style.display="none";
+        }
+      });
+}
+completedFunction (arrayButtons);
+completedFunction(arrayButtonsMobile);
 
-all.addEventListener("click", function(){
-  all.classList.add("button-item-click");
-  completed.classList.remove("button-item-click");
-  clearCompleted.classList.remove("button-item-click");
-  active.classList.remove("button-item-click");
-  
-  for (let index = 0; index < myUL.children.length; index++) {
-    myUL.children[index].style.display="flex"
-  }
-});
+// Cuando tocamos "all" nos aparecen todas las tareas
+function allFunction (array){
+    array[0].addEventListener("click", function(){
+        array[0].classList.add("button-item-click");
+        array[2].classList.remove("button-item-click");
+        array[3].classList.remove("button-item-click");
+        array[1].classList.remove("button-item-click");
+        
+        for (let index = 0; index < myUL.children.length; index++) {
+          myUL.children[index].style.display="flex"
+        }
+      });
+};
+allFunction(arrayButtons);
+allFunction(arrayButtonsMobile);
+
 // Cuando tocamos "active" mostrammos solo las tareas que nos quedan pendientes
-active.addEventListener("click", function(){
-  active.classList.add("button-item-click");
-  completed.classList.remove("button-item-click");
-  clearCompleted.classList.remove("button-item-click");
-  all.classList.remove("button-item-click");
-  for (let index = 0; index < myUL.children.length; index++) {
-    if (myUL.children[index].classList.contains ("crossed-text")){
-      myUL.children[index].style.display="none"
-   } else  myUL.children[index].style.display="flex"
- }
-});
+function activeFunction (array){
+    array[1].addEventListener("click", function(){
+        array[1].classList.add("button-item-click");
+        array[2].classList.remove("button-item-click");
+        array[3].classList.remove("button-item-click");
+        array[0].classList.remove("button-item-click");
+        for (let index = 0; index < myUL.children.length; index++) {
+          if (myUL.children[index].classList.contains ("crossed-text")){
+            myUL.children[index].style.display="none"
+         } else  myUL.children[index].style.display="flex"
+       }
+      });
+}
+activeFunction(arrayButtons);
+activeFunction(arrayButtonsMobile);
 
 // Cuando tocamos "Clear completed" eliminamos de manera definitiva los elementos de la lista que ya fueron realizados
 //---------CHEQUEAR POR QUÉ ME ELIMINA DE A UN ELEMENTO A LA VEZ
