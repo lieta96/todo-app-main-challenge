@@ -12,48 +12,44 @@
 
 </head>
 
-<body class="dark-theme">
+<body class="dark-theme ">
 
-  <header class="dark-theme light-theme"> 
-    <img src="./images/bg-desktop-dark.jpg" alt="" class="dark">
-    <img src="./images/bg-desktop-light.jpg" alt="" class="light">
-  </header>
-
-  <section id="todo-header" class="dark light todo-header">
-    <h1 class="dark light">todo</h1>
-    <img src="./images/icon-sun.svg" alt="">   
+  <section class="background dark-theme "> 
+    <img src="./images/bg-desktop-dark.jpg" alt="" class="dark-background" id="background-img">
   </section>
-  <section class="todo-list">
-    <div class="input-area">
-      <input type="text" id="new-todo" class="new-todo" placeholder="things to do">
-   </div>
-   <div class="todo-list">
-    <ul id="myUL">
-      <li>Hit the gym</li>
-      <li class="checked">Pay bills</li>
-      <li>Meet George</li>
-      <li>Buy eggs</li>
-      <li>Read a book</li>
-      <li>Organize office</li>
-    </ul>
-   </div>
-  </section>
+  <div id="myDIV" class="header">
+    <h2>TODO </h2>
+    <img src="./images/icon-sun.svg" class="sun-icon" id="theme" alt="">
+    <input type="text" id="myInput"  class="myInput dark-theme " placeholder="Tasks">
+</div>
+<div class="container dark-theme ">
+  <ul id="myUL" class="dark-theme ">
+        <li><span>Hit the gym</span> </li>
+        <li >Pay bills</li>
+        <li>Meet George</li>
+        <li>Buy eggs</li>
+        <li>Read a book</li>
+        <li>Organize office</li>
+  </ul>
+      
+  <div class="buttons dark-theme ">
+    <span class="items-left" id="items-left"></span> <!--complpetar el interior con js-->
+    <span id="all"class="all button-item dark-theme ">All</span>
+    <span id="active" class="active button-item dark-theme ">Active</span>
+    <span id="completed" class="completed button-item dark-theme ">Completed</span>
+    <span id="clear-completed" class="clear-completed button-item dark-theme ">Clear Completed</span>
+  </div>
+</div>  
 
-  Todo
 
-  <!-- Add dynamic number --> items left
-
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
+  
 
   <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/lieta96">Lieta</a>.
   </footer>
+
+  <script src="./js/codigo.js"></script>
+
 </body>
 </html>
