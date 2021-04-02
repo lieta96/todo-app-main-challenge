@@ -66,14 +66,18 @@ body.light-theme {
     padding-top: 100px;
 }
 .header h2{
-    float:left;
     font-size: 40px;
     letter-spacing: 10px;
     display: inline-block;
     color:hsl(236, 33%, 92%);
 }
+.title-container{
+    display: flex;
+    justify-content: space-between;
+}
 .sun-icon, .moon-icon{
-    float: inline-end;
+    object-fit: contain;
+    cursor:pointer;
 }
 .myInput{
     width: 660px;
@@ -91,6 +95,7 @@ section.background{
     width: 100vw;
     overflow: hidden;
 }
+
 /*----- container -----*/
 .container, .header{
     margin: 20px;
@@ -129,7 +134,6 @@ section.background{
     border-bottom: solid 0.5px var(--very-light-grayish-blue);    
 }
 li span{
-    cursor:pointer;
     padding-top: 5px;
 }
 .close{
@@ -151,7 +155,6 @@ li span{
 .checkbox{
     width: 2em;
     height: 2em;
-    background-color: ;
     border-radius: 50%;
     vertical-align: middle;
     border: 1px solid var(--very-dark-grayish-blue) ; 

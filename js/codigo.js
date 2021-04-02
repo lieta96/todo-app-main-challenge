@@ -1,4 +1,3 @@
-
 // Armamos un NodeList object con los todo-list elements que figuran en pantalla apenas cargamos la página
 let myNodeList = document.getElementsByTagName("LI"); 
 // Contamos la cantidad de tareas pendientes apenas cargamos la página (que serían todas)
@@ -21,26 +20,29 @@ function createCloseButton (element){
   // Usamos el evento "onclick" para que al tocar sobre el close eliminemos la tarea correspondiente
   img.onclick = function() {
     let div = this.parentElement;//devuele el elemento padre de "close" que sería el LI correspondiente
-    let div2 =div.parentElement; 
-    div2.removeChild(div)
+    let divParent =div.parentElement; 
+    divParent.removeChild(div)
     pendingTasks-=1; // restamos uno al total de tareas pendientes.
   }
   return element.appendChild(img);
 }
 // Creamos una función para armar el checkbox
-function createCheckbox (element){
+function createCheckbox (element,num){
   let checkbox =document.createElement ("INPUT");
   let labelCheckbox=document.createElement("LABEL");
   let img=document.createElement("img");
   // Le asignamos atributos al checkbox
-  labelCheckbox.className="label-checkbox"
-  labelCheckbox.htmlFor="checkbox";
+  labelCheckbox.className="label-checkbox";
   checkbox.type ="checkbox";
   checkbox.className="checkbox";
-  checkbox.id="checkbox";
+
+  checkbox.id=`checkbox-${num}`;
+  labelCheckbox.htmlFor=`checkbox-${num}`;
+
   img.src="./images/icon-check.svg";
   img.className="icon-check";
   img.style.display="none";
+
   labelCheckbox.appendChild(img);
   labelCheckbox.appendChild(checkbox);
   element.appendChild(labelCheckbox);
@@ -66,11 +68,8 @@ function createCheckbox (element){
 
 // Creamos un FOR para agregar a los elementos de la lista el checkbox y el botón close "X"
 for (i = 0; i < myNodeList.length; i++) {
-  let myNodeElement=myNodeList[i];
-  
-  // Lamamos a la función createCheckbox para agregarlo
-  createCheckbox(myNodeList[i]);
-  
+  // Llamamos a la función createCheckbox para agregarlo
+  createCheckbox(myNodeList[i],i);
   // Llamamos a la función createCloseButton para agregarlo
   createCloseButton (myNodeList[i]);
 }
@@ -81,10 +80,13 @@ myInput.addEventListener("keyup", function(event) {
   if (event.key === "Enter") {
       newElement()
   }
-});
+}); 
+// Los checkbox tienen un id que depende de un número, para que las tareas que se agreguen también tenga un id adecuado, les agregaremos un número 
+let number=myNodeList.length;
 
 //Creamos un nuevo elemento de la lista 
 function newElement() {
+  number+=1;
   //creamos un li
   let li = document.createElement("li"); 
   // guardamos el input ingresado
@@ -94,10 +96,10 @@ function newElement() {
   //lo agregamos dentro del LI
   li.appendChild(t);
   // chequeamos que el valor ingresado sea válido
-  if (inputValue === '') {
-    alert("You must write something!");
+  if (inputValue.trim ()) { //trim elimina espacios
+    document.getElementById("myUL").appendChild(li);
   } else {
-    document.getElementById("myUL").appendChild(li);  
+     alert("You must write something!"); 
   }
   document.getElementById("myInput").value = "";
   
@@ -105,11 +107,12 @@ function newElement() {
   createCloseButton (li);
 
   // Llamamos a la función createCheckbox para agregarla al LI 
-  createCheckbox(li);
+  createCheckbox(li,number);
 
   // como agregamos una tarea para hacer tenemos que sumar uno al pendingTasks
   pendingTasks+=1;
   numberOfItemsLeft ();
+  return number;
 }
 
 // Botonces "all", "active", "completed", "clear completed"
