@@ -181,12 +181,16 @@ activeFunction(arrayButtons);
 activeFunction(arrayButtonsMobile);
 
 // Cuando tocamos "Clear completed" eliminamos de manera definitiva los elementos de la lista que ya fueron realizados
-//---------CHEQUEAR POR QUÉ ME ELIMINA DE A UN ELEMENTO A LA VEZ
 clearCompleted.addEventListener("click", function(){
-  for (let index = 0; index < myUL.children.length; index++) {
-    if (myUL.children[index].classList.contains ("crossed-text")){ 
+  for (let index = 0; index < myUL.children.length; index++ ) {
+
+    {if (myUL.children[index].classList.contains ("crossed-text")){ 
       myUL.removeChild(myUL.children[index]);
-   }
+      // Al index le resto uno porque al haber eliminado un elemento de la lista se me corren los índices un lugar
+      index-=1
+      continue
+      // El continue lo necesito para que el for no se frene al haberse cumplido al condición
+   }}
  }
 });
 
