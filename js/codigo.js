@@ -13,19 +13,34 @@ numberOfItemsLeft();
 let doneTasksArray=[]; 
 
 // Creamos una función para crear el botón "close"
-function createCloseButton (element){
-  let img = document.createElement("img");
-  img.src="./images/icon-cross.svg";
-  img.className = "close";
-  // Usamos el evento "onclick" para que al tocar sobre el close eliminemos la tarea correspondiente
-  img.onclick = function() {
-    let div = this.parentElement;//devuele el elemento padre de "close" que sería el LI correspondiente
-    let divParent =div.parentElement; 
-    divParent.removeChild(div)
-    pendingTasks-=1; // restamos uno al total de tareas pendientes.
-  }
-  return element.appendChild(img);
-}
+// function createCloseButton (element){
+//   let img = document.createElement("img");
+//   img.src="./images/icon-cross.svg";
+//   img.className = "close";
+//   // Usamos el evento "onclick" para que al tocar sobre el close eliminemos la tarea correspondiente
+//   img.onclick = function() {
+//     let div = this.parentElement; //devuele el elemento padre de "close" que sería el LI correspondiente
+//     let divParent =div.parentElement; 
+//     divParent.removeChild(div)
+      
+//     for (let index = 0; index < myUL.children.length; index++ ) {
+//       pendingTasks=myUL.children.length;
+      
+//       if (myUL.children[index].classList.contains ("crossed-text")){ 
+//         pendingTasks-=1
+//         console.log (pendingTasks)
+//         numberOfItemsLeft ()
+//         return pendingTasks
+//       }
+     
+//       return pendingTasks
+      
+//     }
+//     return pendingTasks
+//   }
+//   return element.appendChild(img),pendingTasks;
+// }
+
 // Creamos una función para armar el checkbox
 function createCheckbox (element,num){
   let checkbox =document.createElement ("INPUT");
@@ -71,7 +86,7 @@ for (i = 0; i < myNodeList.length; i++) {
   // Llamamos a la función createCheckbox para agregarlo
   createCheckbox(myNodeList[i],i);
   // Llamamos a la función createCloseButton para agregarlo
-  createCloseButton (myNodeList[i]);
+  //createCloseButton (myNodeList[i]);
 }
 
 // Al presionar enter agregamos un elemento a la lista 
@@ -104,7 +119,7 @@ function newElement() {
   document.getElementById("myInput").value = "";
   
   // Llamamos a la funcióon createCloseButton para agregarla al LI 
-  createCloseButton (li);
+  //createCloseButton (li);
 
   // Llamamos a la función createCheckbox para agregarla al LI 
   createCheckbox(li,number);
